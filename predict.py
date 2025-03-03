@@ -11,10 +11,10 @@ def predict_page(scaler, saved_columns, nn_model, xgb_model, lr_model): # Accept
     with st.form("prediction_form"):
         patient_id = st.text_input(_("Patient ID"))
         name = st.text_input(_("Patient Name")) # Corrected label
-        age = st.number_input(_("Age"), min_value=18, value=25)
-        weight = st.number_input(_("Weight"), min_value=40.0, value=70.0)
-        height = st.number_input(_("Height"), min_value=140.0, value=170.0)
-        weeks_pregnant = st.number_input(_("Weeks Pregnant"), min_value=0, value=20)
+        age = st.number_input(_("Age"), min_value=18, max_value=100, value=25)
+        weight = st.number_input(_("Weight"), min_value=40.0, max_value=200.0, value=70.0)
+        height = st.number_input(_("Height"), min_value=140.0, max_value=200.0, value=170.0)
+        weeks_pregnant = st.number_input(_("Weeks Pregnant"), min_value=0, max_value=52, value=20)
 
         st.subheader(_("Clinical Data"))
         sbp = st.number_input(_("SBP"), min_value=90.0, max_value=180.0, value=120.0)
