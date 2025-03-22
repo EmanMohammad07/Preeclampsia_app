@@ -8,31 +8,28 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.impute import SimpleImputer
 import pandas as pd
 import streamlit as st
-import traceback  # Make sure traceback is imported
+import traceback
+import sqlite3
 
-# Define assets path relative to utils.py
+# Define paths
 base_path = os.path.dirname(os.path.abspath(__file__))
 assets_path = os.path.join(base_path, "assets")
 locales_path = os.path.join(base_path, "locales")
 
-
-# Load Scaler and columns
+# ✅ تحميل السكيلر واسماء الأعمدة
 def load_scaler_and_columns():
     try:
         with open(os.path.join(assets_path, 'preeclampsia_scaler.pkl'), 'rb') as scaler_file:
             scaler = pickle.load(scaler_file)
-
-        # تحميل قائمة الأعمدة من ملف json (مفضل لسهولة التعديل)
         with open(os.path.join(assets_path, 'scaler_columns.json'), 'r') as f:
             saved_columns = json.load(f)
-
         return scaler, saved_columns
     except FileNotFoundError as e:
         st.error(f"Error loading scaler or columns: {e}")
         st.stop()
         return None, None
 
-# Load Models
+# ✅ تحميل النماذج
 def load_models():
     try:
         nn_model = tf.keras.models.load_model(os.path.join(assets_path, 'preeclampsia_nn_model.keras'))
@@ -46,25 +43,25 @@ def load_models():
         st.stop()
         return None, None, None
 
-# دالة لحساب eGFR بناءً على المعادلة التي زودتني بها
+# ✅ حساب eGFR
 def calculate_egfr(CR_SE, Age):
     k = 0.7
     alpha = -0.329
     factor_female = 1.018
-    eGFR = 141 * min(CR_SE / k, 1)**alpha * max(CR_SE / k, 1)**(-1.209) * (0.993**Age) * factor_female
+    eGFR = 141 * min(CR_SE / k, 1) * alpha * max(CR_SE / k, 1) * (-1.209) * (0.993 ** Age) * factor_female
     return eGFR
 
-# دالة لحساب الميزات المشتقة
+# ✅ حساب الميزات المشتقة
 def calculate_derived_features(weight, height, sbp, dbp, bun, cr_se, plt, age):
-    height_m = height / 100  # تحويل الطول إلى متر
-    bmi = weight / (height_m ** 2) if height_m != 0 else 0  # حساب الـ BMI
-    map_val = (1/3) * sbp + (2/3) * dbp  # حساب MAP
-    bun_cr_ratio = bun / cr_se if cr_se != 0 else 0  # حساب BUN/CR Ratio
-    plt_map_ratio = plt / map_val if map_val != 0 else 0  # حساب PLT/MAP Ratio
-    eGFR = calculate_egfr(cr_se, age)  # حساب eGFR
+    height_m = height / 100
+    bmi = weight / (height_m ** 2) if height_m != 0 else 0
+    map_val = (1 / 3) * sbp + (2 / 3) * dbp
+    bun_cr_ratio = bun / cr_se if cr_se != 0 else 0
+    plt_map_ratio = plt / map_val if map_val != 0 else 0
+    eGFR = calculate_egfr(cr_se, age)
     return height_m, bmi, map_val, bun_cr_ratio, plt_map_ratio, eGFR
 
-# حفظ البيانات المدخلة في patient_data.csv
+# ✅ حفظ البيانات في CSV
 def save_patient_data(patient_id, name, age, weight, height, weeks_pregnant, sbp, dbp, cr_se, plt, bun, protein, chol, glu, uric, alk, alt, eGFR, bmi, map_val, plt_map_ratio, height_m, bun_cr_ratio, prediction):
     new_data = pd.DataFrame([{
         'Patient ID': patient_id,
@@ -93,55 +90,54 @@ def save_patient_data(patient_id, name, age, weight, height, weeks_pregnant, sbp
         'Prediction': prediction
     }])
 
-    if os.path.exists(os.path.join(assets_path, 'patient_data.csv')):
-        patient_data = pd.read_csv(os.path.join(assets_path, 'patient_data.csv'))
+    csv_path = os.path.join(assets_path, 'patient_data.csv')
+    if os.path.exists(csv_path):
+        patient_data = pd.read_csv(csv_path)
         patient_data = pd.concat([patient_data, new_data], ignore_index=True)
-        patient_data.to_csv(os.path.join(assets_path, 'patient_data.csv'), index=False)
+        patient_data.to_csv(csv_path, index=False)
     else:
-        new_data.to_csv(os.path.join(assets_path, 'patient_data.csv'), index=False)
+        new_data.to_csv(csv_path, index=False)
 
-# تحميل البيانات من ملف CSV
+# ✅ تحميل المرضى من قاعدة البيانات SQLite
 def load_patient_data():
     try:
-        return pd.read_csv(os.path.join(assets_path, 'patient_data.csv'))
-    except FileNotFoundError:
-        st.warning("patient_data.csv not found. Please ensure you save patient data first.")
+        db_path = os.path.join("patient_data.db")
+        conn = sqlite3.connect(db_path)
+        df = pd.read_sql_query("SELECT * FROM patients", conn)
+        conn.close()
+        return df
+    except Exception as e:
+        st.warning(f"Error loading data from database: {e}")
         return None
 
-# البحث عن المريض بواسطة Patient ID
+# ✅ البحث عن مريض باستخدام patient_id
 def search_patient_by_id(patient_id, patient_data):
-    result = patient_data[patient_data['Patient ID'] == int(patient_id)]
-    if not result.empty:
-        return result
-    return None
+    if 'patient_id' not in patient_data.columns:
+        return None
+    return patient_data[patient_data['patient_id'] == patient_id]
 
-# تحميل ملفات الترجمة من مجلد locales
+# ✅ تحميل ملفات الترجمة
 def load_translation(language):
     locale_file = os.path.join(locales_path, f"{language}.json")
-    print(f"DEBUG: Attempting to load translation file: {locale_file}") # Debug print
-
+    print(f"DEBUG: Attempting to load translation file: {locale_file}")
     if os.path.exists(locale_file):
         try:
             with open(locale_file, "r", encoding="utf-8") as file:
                 translation_data = json.load(file)
-                print(f"DEBUG: Successfully loaded translations for language: {language}") # Debug print
+                print(f"DEBUG: Successfully loaded translations for language: {language}")
                 return translation_data
         except json.JSONDecodeError as e:
-            st.error(f"⚠ Error in {language}.json file: {e}")
-            print(f"DEBUG: JSONDecodeError for {language} file: {e}") # Debug print
+            st.error(f"⚠️ Error in {language}.json file: {e}")
             return {}
-        except Exception as e:  # Catch ANY other errors during file loading/parsing
-            st.error(f"⚠ Unexpected error loading {language}.json: {e}")
-            print(f"DEBUG: Unexpected error loading {language}.json: {e}") # Debug print
-            traceback.print_exc()  # Print full traceback to console for deeper debugging
+        except Exception as e:
+            st.error(f"⚠️ Unexpected error loading {language}.json: {e}")
+            traceback.print_exc()
             return {}
     else:
-        st.error(f"⚠ Translation file {language}.json not found at {locale_file}!")
-        print(f"DEBUG: FileNotFoundError: {locale_file} not found") # Debug print
+        st.error(f"⚠️ Translation file {language}.json not found at {locale_file}!")
         return {}
 
-# دالة الترجمة - We will initialize translations in app.py
+# ✅ دالة الترجمة _
 def _(text):
-    # This will be set in app.py using session_state
     translations = st.session_state.get('translations', {})
     return translations.get(text, text)

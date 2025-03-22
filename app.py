@@ -1,32 +1,29 @@
 import streamlit as st
 import os
-from utils import load_translation, _, load_scaler_and_columns, load_models # Import utils functions
+from utils import load_translation, _
 from home import home_page
 from search_patient import search_patient_page
 from predict import predict_page
+from result import result_page
+from preeclampsia_info import preeclampsia_info_page
 
-# Initialize session state for language and page if not already present
+# الحالة المبدئية
 if "language" not in st.session_state:
     st.session_state.language = "en"
 if "page" not in st.session_state:
     st.session_state.page = "home"
 
-# Load translations at the beginning of app.py
+# تحميل الترجمة حسب اللغة المختارة
 if "translations" not in st.session_state or st.session_state.language != st.session_state.get("last_language", ""):
     st.session_state.translations = load_translation(st.session_state.language)
     st.session_state.last_language = st.session_state.language
 
-# Define text direction and alignment based on language
+# اتجاه النص واللون
 text_direction = "rtl" if st.session_state.language == "ar" else "ltr"
 text_align = "right" if st.session_state.language == "ar" else "left"
 text_color = "#003366"
 
-# Load scaler and columns globally in app.py
-scaler, saved_columns = load_scaler_and_columns()
-# Load models globally in app.py
-nn_model, xgb_model, lr_model = load_models()
-
-
+# تنسيق الواجهة
 st.markdown("""
     <style>
         .stApp {{
@@ -46,8 +43,7 @@ st.markdown("""
     </style>
 """.format(direction=text_direction, align=text_align, color=text_color), unsafe_allow_html=True)
 
-
-# **Sidebar**
+# الشريط الجانبي
 st.sidebar.title(_("About our site"))
 st.sidebar.write(_("We are Mama’s Hope, and we aspire to be a source of hope for every mother dreaming of a safe and stable pregnancy."))
 
@@ -63,8 +59,12 @@ if st.sidebar.button(_("Start Prediction")):
     st.session_state.page = "predict"
     st.rerun()
 
-# **Language Change**
-st.sidebar.markdown(f"**{_('Change language')}**")
+if st.sidebar.button(_("Preeclampsia Information")):
+    st.session_state.page = "preeclampsia_info"
+    st.rerun()
+
+# اختيار اللغة
+st.sidebar.markdown(f"{_('Change language')}")
 language_choice = st.sidebar.radio(_("Select language"), ["English", "Arabic"], index=0 if st.session_state.language == "en" else 1)
 
 if language_choice == "English" and st.session_state.language != "en":
@@ -79,11 +79,14 @@ elif language_choice == "Arabic" and st.session_state.language != "ar":
     st.session_state.last_language = "ar"
     st.rerun()
 
-
-# **Page Routing**
+# التنقل بين الصفحات
 if st.session_state.page == "home":
     home_page()
 elif st.session_state.page == "search_patient":
     search_patient_page()
 elif st.session_state.page == "predict":
-    predict_page(scaler, saved_columns, nn_model, xgb_model, lr_model) # Pass loaded models and scaler
+    predict_page()
+elif st.session_state.page == "result":
+    result_page()
+elif st.session_state.page == "preeclampsia_info":
+    preeclampsia_info_page()

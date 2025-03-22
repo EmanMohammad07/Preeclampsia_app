@@ -1,16 +1,73 @@
 import streamlit as st
 import pandas as pd
-from utils import _, calculate_derived_features, save_patient_data, calculate_egfr
-from sklearn.impute import SimpleImputer # Already imported in utils, but for clarity if this was standalone
+import re
+from sklearn.impute import SimpleImputer
+from utils import _, calculate_derived_features, save_patient_data, load_models, load_scaler_and_columns
+import sqlite3
 
+# التحقق من الاسم باللغة الإنجليزية فقط
+def is_english(text):
+    return bool(re.match('^[A-Za-z0-9\s]*$', text))
 
-def predict_page(scaler, saved_columns, nn_model, xgb_model, lr_model): # Accept models and scaler as arguments
+# التحقق من أن Patient ID يتكون من 6 أرقام فقط
+def is_valid_patient_id(text):
+    return bool(re.fullmatch(r'\d{6}', text))
+
+# حفظ البيانات في قاعدة البيانات
+def save_to_database(data):
+    conn = sqlite3.connect("patient_data.db")
+    cursor = conn.cursor()
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS patients (
+            patient_id TEXT,
+            name TEXT,
+            age INTEGER,
+            weight REAL,
+            height REAL,
+            weeks_pregnant INTEGER,
+            sbp REAL,
+            dbp REAL,
+            cr_se REAL,
+            plt REAL,
+            bun REAL,
+            protein REAL,
+            chol REAL,
+            glu REAL,
+            uric REAL,
+            alk REAL,
+            alt REAL,
+            egfr REAL,
+            bmi REAL,
+            map_val REAL,
+            plt_map_ratio REAL,
+            height_m REAL,
+            bun_cr_ratio REAL,
+            result TEXT
+        )
+    ''')
+    cursor.execute('''INSERT INTO patients VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)''', data)
+    conn.commit()
+    conn.close()
+
+# صفحة التنبؤ
+def predict_page():
     st.title(_("preeclampsia prediction"))
     st.write(_("early_prediction"))
 
+    # تحميل النماذج والمقياس
+    scaler, saved_columns = load_scaler_and_columns()
+    nn_model, xgb_model, lr_model = load_models()
+
     with st.form("prediction_form"):
-        patient_id = st.text_input(_("Patient ID"))
-        name = st.text_input(_("Patient Name")) # Corrected label
+        patient_id = st.text_input(_("Patient ID"), key="patient_id")
+        name = st.text_input(_("Patient Name"), key="patient_name")
+
+        if patient_id and not is_valid_patient_id(patient_id):
+            st.warning(_("Patient ID must be exactly 6 digits (numbers only)."))
+
+        if name and not is_english(name):
+            st.warning(_("Please enter the Patient Name in English only!"))
+
         age = st.number_input(_("Age"), min_value=18, max_value=100, value=25)
         weight = st.number_input(_("Weight"), min_value=40.0, max_value=200.0, value=70.0)
         height = st.number_input(_("Height"), min_value=140.0, max_value=200.0, value=170.0)
@@ -32,79 +89,83 @@ def predict_page(scaler, saved_columns, nn_model, xgb_model, lr_model): # Accept
         predict_button = st.form_submit_button(_("Predict"))
 
     if predict_button:
-        if not patient_id:
-            st.warning(_("Please enter a valid Patient ID!"))
-        else:
-            # حساب القيم المشتقة بما في ذلك eGFR
-            height_m, bmi, map_val, bun_cr_ratio, plt_map_ratio, eGFR = calculate_derived_features(weight, height, sbp, dbp, bun, cr_se, plt, age)
+        if not is_valid_patient_id(patient_id) or not is_english(name):
+            st.error(_("Please enter a valid Patient ID (6 digits only) and make sure the name is in English."))
+            return
 
-            # عرض القيم المشتقة للمستخدم
-            st.write(f"**Height in meters (Height_m):** {height_m:.2f}")
-            st.write(f"**BMI:** {bmi:.2f}")
-            st.write(f"**MAP:** {map_val:.2f}")
-            st.write(f"**BUN/CR Ratio:** {bun_cr_ratio:.2f}")
-            st.write(f"**PLT/MAP Ratio:** {plt_map_ratio:.2f}")
-            st.write(f"**eGFR:** {eGFR:.2f}")
+        height_m, bmi, map_val, bun_cr_ratio, plt_map_ratio, eGFR = calculate_derived_features(
+            weight, height, sbp, dbp, bun, cr_se, plt, age
+        )
 
-            # إعداد البيانات للتنبؤ
-            input_data = pd.DataFrame([{
-                'Age': age,
-                'K': 0.7, # إضافة ميزة 'K' بالقيمة 0.7
-                'MAP': map_val,
-                'BUN_CR_ratio': bun_cr_ratio,
-                'PLT': plt,
-                'Height_m': height_m,
-                'PLT_MAP_ratio': plt_map_ratio,
-                'BUN': bun,
-                'Weight': weight,
-                'BMI': bmi,
-                'DBP': dbp,
-                'CHOL': chol, # استخدام الاسم المختصر "CHOL"
-                'weeks of childbirth': weeks_pregnant, # استخدام الاسم "weeks of childbirth"
-                'eGFR': eGFR,
-                'Glu': glu, # استخدام الاسم المختصر "Glu"
-                'ALT': alt,
-                'PROTEIN': protein, # استخدام الاسم المختصر "PROTEIN"
-                'Uric': uric, # استخدام الاسم المختصر "Uric"
-                'SBP': sbp,
-                'CR_SE': cr_se,
-                'ALK': alk,
-                'Height': height # استخدام الاسم "Height"
-            }], columns=saved_columns) # استخدام saved_columns المعدلة
+        input_data = pd.DataFrame([{
+            'Age': age,
+            'K': 0.7,
+            'MAP': map_val,
+            'BUN_CR_ratio': bun_cr_ratio,
+            'PLT': plt,
+            'Height_m': height_m,
+            'PLT_MAP_ratio': plt_map_ratio,
+            'BUN': bun,
+            'Weight': weight,
+            'BMI': bmi,
+            'DBP': dbp,
+            'CHOL': chol,
+            'weeks of childbirth': weeks_pregnant,
+            'eGFR': eGFR,
+            'Glu': glu,
+            'ALT': alt,
+            'PROTEIN': protein,
+            'Uric': uric,
+            'SBP': sbp,
+            'CR_SE': cr_se,
+            'ALK': alk,
+            'Height': height
+        }], columns=saved_columns)
 
-            # استبدال القيم المفقودة باستخدام SimpleImputer
-            imputer = SimpleImputer(strategy='mean')  # استبدال القيم المفقودة بالمتوسط
-            input_data_imputed = imputer.fit_transform(input_data)  # استبدال القيم المفقودة
+        imputer = SimpleImputer(strategy='mean')
+        input_data_imputed = imputer.fit_transform(input_data)
+        input_scaled = scaler.transform(input_data_imputed)
 
-            # تحويل البيانات المفقودة بعد المعالجة
-            input_scaled = scaler.transform(input_data_imputed)
+        # التنبؤ باستخدام النماذج
+        nn_probs = nn_model.predict(input_scaled).flatten()
+        xgb_probs = xgb_model.predict_proba(input_scaled)[:, 1]
+        lr_probs = lr_model.predict_proba(input_scaled)[:, 1]
+        ensemble_probs = (nn_probs + xgb_probs + lr_probs) / 3.0
+        ensemble_pred = (ensemble_probs > 0.5).astype(int)
 
-            # Ensemble prediction
-            nn_probs = nn_model.predict(input_scaled).flatten()
-            xgb_probs = xgb_model.predict_proba(input_scaled)[:, 1]
-            lr_probs = lr_model.predict_proba(input_scaled)[:, 1]
-            ensemble_probs = (nn_probs + xgb_probs + lr_probs) / 3.0
-            best_thresh = 0.5  # or the best threshold that you got from your model training.
-            ensemble_pred = (ensemble_probs > best_thresh).astype(int)
+        result = _("Preeclampsia detected") if ensemble_pred[0] == 1 else _("No preeclampsia detected")
 
-            # تحديد النتيجة
-            result = _("Preeclampsia detected") if ensemble_pred[0] == 1 else _("No preeclampsia detected")
+        # حفظ البيانات
+        save_patient_data(patient_id, name, age, weight, height, weeks_pregnant,
+                          sbp, dbp, cr_se, plt, bun, protein, chol, glu, uric, alk, alt,
+                          eGFR, bmi, map_val, plt_map_ratio, height_m, bun_cr_ratio, result)
 
-            # رسالة التوصية بناءً على النتيجة
-            recommendation = _("We recommend immediate medical attention.") if result == _("Preeclampsia detected") else _("No immediate medical concerns. Continue monitoring health regularly.")
+        save_to_database((patient_id, name, age, weight, height, weeks_pregnant,
+                          sbp, dbp, cr_se, plt, bun, protein, chol, glu, uric, alk, alt,
+                          eGFR, bmi, map_val, plt_map_ratio, height_m, bun_cr_ratio, result))
 
-            # حفظ البيانات المدخلة مع التنبؤ في patient_data.csv
-            save_patient_data(patient_id, name, age, weight, height, weeks_pregnant, sbp, dbp, cr_se, plt, bun, protein, chol, glu, uric, alk, alt, eGFR, bmi, map_val, plt_map_ratio, height_m, bun_cr_ratio, result)
+        # عرض النتيجة في صفحة منفصلة
+        st.session_state.page = "result"
+        st.session_state.result = result
+        st.session_state.derived_table = pd.DataFrame([{
+            "Height (m)": height_m,
+            "BMI": bmi,
+            "MAP": map_val,
+            "BUN/CR Ratio": bun_cr_ratio,
+            "PLT/MAP Ratio": plt_map_ratio,
+            "eGFR": eGFR
+        }])
+        st.session_state.patient_info = {
+            "Patient ID": patient_id,
+            "Name": name,
+            "Age": age,
+            "Weight": weight,
+            "Height": height,
+            "Weeks Pregnant": weeks_pregnant
+        }
 
-            # عرض النتيجة
-            st.write(f"**Prediction Result:** {result}")
-            st.write(f"**Recommendation:** {recommendation}")
-
+        st.rerun()
 
     if st.button(_("Back to Home")):
         st.session_state.page = "home"
         st.rerun()
-
-if __name__ == '__main__':
-    # This is just for testing, when running standalone, it won't have scaler/models
-    st.error("This page needs to be run from the main app.py so models and scaler are loaded.")
