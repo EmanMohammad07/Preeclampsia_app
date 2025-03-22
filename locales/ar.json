@@ -1,58 +1,85 @@
 {
-    "About our site": "عن موقعنا",
-    "We are Mama’s Hope, and we aspire to be a source of hope for every mother dreaming of a safe and stable pregnancy.": "نحن أمل ماما، ونطمح أن نكون مصدر أمل لكل أم تحلم بحمل آمن ومستقر.",
-    "Home page": "الصفحة الرئيسية",
-    "Search for Patient": "البحث عن مريض",
-    "Start Prediction": "ابدأ التنبؤ",
-    "Change language": "تغيير اللغة",
-    "Select language": "اختر اللغة",
-    "English": "الإنجليزية",
-    "Arabic": "العربية",
-    "Welcome to Mama's Hope": "مرحبًا بكم في أمل ماما",
-    "In the world of medicine, where knowledge and professional expertise meet humanity, hope is born as the driving force that guides us toward a safer future for mothers and their babies.": "في عالم الطب، حيث تلتقي المعرفة والخبرة المهنية بالإنسانية، يولد الأمل كقوة دافعة توجهنا نحو مستقبل أكثر أمانًا للأمهات وأطفالهن.",
-    "At <b>Mama’s Hope</b>, we believe that every mother deserves the opportunity to live a healthy and secure life for herself and her child.": "نحن في <b>أمل ماما</b> نؤمن بأن كل أم تستحق فرصة العيش بصحة وأمان لها ولطفلها.",
-    "<b>Preeclampsia</b> is a serious medical condition that can significantly impact maternal and fetal health. However, early detection is key to improving outcomes.": "<b>تسمم الحمل</b> هو حالة طبية خطيرة يمكن أن تؤثر بشكل كبير على صحة الأم والجنين. ولكن، الكشف المبكر هو المفتاح لتحسين النتائج.",
-    "Our website provides <b>healthcare professionals</b> with advanced tools and evidence-based insights to predict preeclampsia, empowering them to make timely and informed decisions.": "يوفر موقعنا الإلكتروني <b>للمتخصصين في الرعاية الصحية</b> أدوات متقدمة ورؤى قائمة على الأدلة للتنبؤ بتسمم الحمل، مما يمكنهم من اتخاذ قرارات مستنيرة في الوقت المناسب.",
-    "We invite you to explore our website and be part of this meaningful journey. Every piece of information, every tool, and every step we take together brings us closer to a brighter and healthier future.": "ندعوك لاستكشاف موقعنا والمشاركة في هذه الرحلة الهادفة. كل معلومة، وكل أداة، وكل خطوة نتخذها معًا تقربنا من مستقبل أكثر إشراقًا وصحة.",
-    "<b>Thank you for being part of Mama’s Hope.</b>": "<b>شكرًا لكونك جزءًا من أمل ماما.</b>",
-    "Search for Patient": "البحث عن مريض",
-    "Enter Patient ID": "أدخل رقم تعريف المريض",
-    "Search": "بحث",
-    "No patient found with this ID.": "لم يتم العثور على مريض بهذا الرقم.",
-    "Failed to load patient data.": "فشل تحميل بيانات المريض.",
-    "Back to Home": "العودة إلى الصفحة الرئيسية",
-    "preeclampsia prediction": "التنبؤ بتسمم الحمل (مقدمات الارتعاج)",
-    "early_prediction": "التنبؤ المبكر",
-    "Patient ID": "رقم تعريف المريض",
-    "Patient Name": "اسم المريض",
-    "Age": "العمر",
-    "Weight": "الوزن",
-    "Height": "الطول",
-    "Weeks Pregnant": "أسابيع الحمل",
-    "Clinical Data": "البيانات السريرية",
-    "SBP": "SBP (ضغط الدم الانقباضي)",
-    "DBP": "DBP (ضغط الدم الانبساطي)",
-    "CR_SE": "CR_SE (كرياتينين المصل)",
-    "Platelets": "الصفائح الدموية",
-    "BUN": "BUN (نيتروجين يوريا الدم)",
-    "Protein": "البروتين",
-    "Cholesterol": "الكوليسترول",
-    "Glucose": "الجلوكوز",
-    "Uric Acid": "حمض اليوريك",
-    "ALK": "ALK (الفوسفاتاز القلوي)",
-    "ALT": "ALT (ناقلة أمين الألانين)",
-    "Predict": "تنبؤ",
-    "Please enter a valid Patient ID!": "الرجاء إدخال رقم تعريف صالح للمريض !",
-    "Height in meters (Height_m):": "الطول بالأمتار (Height_m):",
-    "BMI": "BMI (مؤشر كتلة الجسم):",
-    "MAP": "MAP (متوسط الضغط الشرياني):",
-    "BUN/CR Ratio": "نسبة نيتروجين يوريا الدم/كرياتينين المصل (BUN/CR Ratio):",
-    "PLT/MAP Ratio": "نسبة الصفائح الدموية/متوسط الضغط الشرياني (PLT/MAP Ratio):",
-    "eGFR": "eGFR (معدل الترشيح الكبيبي المقدر):",
-    "Prediction Result:": "نتيجة التنبؤ:",
-    "Preeclampsia detected": "تم الكشف عن تسمم الحمل (مقدمات الارتعاج)",
-    "No preeclampsia detected": "لم يتم الكشف عن تسمم الحمل (مقدمات الارتعاج)",
-    "Recommendation:": "التوصية:",
-    "We recommend immediate medical attention.": "نوصي بالاهتمام الطبي الفوري.",
-    "No immediate medical concerns. Continue monitoring health regularly.": "لا توجد مخاوف طبية فورية. الاستمرار في مراقبة الصحة بانتظام."
-  }
+  "About our site": "عن موقعنا",
+  "We are Mama’s Hope, and we aspire to be a source of hope for every mother dreaming of a safe and stable pregnancy.": "نحن أمل ماما، ونطمح أن نكون مصدر أمل لكل أم تحلم بحمل آمن ومستقر.",
+  "Home page": "الصفحة الرئيسية",
+  "Search for Patient": "البحث عن مريض",
+  "Start Prediction": "ابدأ التنبؤ",
+  "Change language": "تغيير اللغة",
+  "Select language": "اختر اللغة",
+  "English": "الإنجليزية",
+  "Arabic": "العربية",
+  "Welcome to Mama's Hope": "مرحبًا بكم في أمل ماما",
+  "In the world of medicine, where knowledge and professional expertise meet humanity, hope is born as the driving force that guides us toward a safer future for mothers and their babies.": "في عالم الطب، حيث تلتقي المعرفة والخبرة المهنية بالإنسانية، يولد الأمل كقوة دافعة توجهنا نحو مستقبل أكثر أمانًا للأمهات وأطفالهن.",
+  "At <b>Mama’s Hope</b>, we believe that every mother deserves the opportunity to live a healthy and secure life for herself and her child.": "نحن في <b>أمل ماما</b> نؤمن بأن كل أم تستحق فرصة العيش بصحة وأمان لها ولطفلها.",
+  "<b>Preeclampsia</b> is a serious medical condition that can significantly impact maternal and fetal health. However, early detection is key to improving outcomes.": "<b>تسمم الحمل (مقدمات الارتعاج)</b> هو حالة طبية خطيرة يمكن أن تؤثر بشكل كبير على صحة الأم والجنين. ولكن، الكشف المبكر هو المفتاح لتحسين النتائج.",
+  "Our website provides <b>healthcare professionals</b> with advanced tools and evidence-based insights to predict preeclampsia, empowering them to make timely and informed decisions.": "يوفر موقعنا الإلكتروني <b>للمتخصصين في الرعاية الصحية</b> أدوات متقدمة ورؤى قائمة على الأدلة للتنبؤ بتسمم الحمل، مما يمكنهم من اتخاذ قرارات مستنيرة في الوقت المناسب.",
+  "We invite you to explore our website and be part of this meaningful journey. Every piece of information, every tool, and every step we take together brings us closer to a brighter and healthier future.": "ندعوك لاستكشاف موقعنا والمشاركة في هذه الرحلة الهادفة. كل معلومة، وكل أداة، وكل خطوة نتخذها معًا تقربنا من مستقبل أكثر إشراقًا وصحة.",
+  "<b>Thank you for being part of Mama’s Hope.</b>": "<b>شكرًا لكونك جزءًا من أمل ماما.</b>",
+  "Search for Patient": "البحث عن مريض",
+  "Enter Patient ID": "أدخل رقم تعريف المريض",
+  "Search": "بحث",
+  "No patient found with this ID.": "لم يتم العثور على مريض بهذا الرقم.",
+  "Failed to load patient data.": "فشل تحميل بيانات المريض.",
+  "Back to Home": "العودة إلى الصفحة الرئيسية",
+  "preeclampsia prediction": "التنبؤ بتسمم الحمل (مقدمات الارتعاج)",
+  "early_prediction": "التنبؤ المبكر",
+  "Patient ID": "رقم تعريف المريض",
+  "Patient Name": "اسم المريض",
+  "Age": "العمر",
+  "Weight": "الوزن",
+  "Height": "الطول",
+  "Weeks Pregnant": "أسابيع الحمل",
+  "Clinical Data": "البيانات السريرية",
+  "SBP": "SBP (ضغط الدم الانقباضي)",
+  "DBP": "DBP (ضغط الدم الانبساطي)",
+  "CR_SE": "CR_SE (كرياتينين المصل)",
+  "Platelets": "الصفائح الدموية",
+  "BUN": "BUN (نيتروجين يوريا الدم)",
+  "Protein": "البروتين",
+  "Cholesterol": "الكوليسترول",
+  "Glucose": "الجلوكوز",
+  "Uric Acid": "حمض اليوريك",
+  "ALK": "ALK (الفوسفاتاز القلوي)",
+  "ALT": "ALT (ناقلة أمين الألانين)",
+  "Predict": "تنبؤ",
+  "Please enter a valid Patient ID!": "الرجاء إدخال رقم تعريف صالح للمريض !",
+  "Height in meters (Height_m):": "الطول بالأمتار (Height_m):",
+  "BMI": "BMI (مؤشر كتلة الجسم):",
+  "MAP": "MAP (متوسط الضغط الشرياني):",
+  "BUN/CR Ratio": "نسبة نيتروجين يوريا الدم/كرياتينين المصل (BUN/CR Ratio):",
+  "PLT/MAP Ratio": "نسبة الصفائح الدموية/متوسط الضغط الشرياني (PLT/MAP Ratio):",
+  "eGFR": "eGFR (معدل الترشيح الكبيبي المقدر):",
+  "Prediction Result:": "نتيجة التنبؤ:",
+  "Preeclampsia detected": "تم الكشف عن تسمم الحمل (مقدمات الارتعاج)",
+  "No preeclampsia detected": "لم يتم الكشف عن تسمم الحمل (مقدمات الارتعاج)",
+  "Recommendation:": "التوصية:",
+  "We recommend immediate medical attention.": "نوصي بالاهتمام الطبي الفوري.",
+  "No immediate medical concerns. Continue monitoring health regularly.": "لا توجد مخاوف طبية فورية. الاستمرار في مراقبة الصحة بانتظام.",
+  "Preeclampsia": "تسمم الحمل",
+  "What is Preeclampsia?": "ما هو تسمم الحمل؟",
+  "Preeclampsia is a serious medical condition that occurs during pregnancy, characterized by high blood pressure and the presence of protein in the urine. If left untreated, it can lead to severe complications for both the mother and baby.": "تسمم الحمل هو حالة طبية خطيرة تحدث أثناء الحمل، تتميز بارتفاع ضغط الدم ووجود البروتين في البول. إذا تركت دون علاج، يمكن أن تؤدي إلى مضاعفات خطيرة لكل من الأم والطفل.",
+  "Symptoms of Preeclampsia": "أعراض تسمم الحمل",
+  "The symptoms of preeclampsia can range from mild to severe and may include:": "قد تتراوح أعراض تسمم الحمل من خفيفة إلى شديدة وقد تشمل:",
+  "High blood pressure (above 140/90 mmHg)": "ارتفاع ضغط الدم (أعلى من 140/90 مم زئبق)",
+  "Unusual swelling in the hands and feet": "تورم غير عادي في اليدين والقدمين",
+  "Severe and sudden headaches": "صداع شديد ومفاجئ",
+  "Visual disturbances such as blurred vision or seeing light spots": "اضطرابات في الرؤية مثل الرؤية الضبابية أو رؤية بقع ضوئية",
+  "Pain in the upper abdomen": "ألم في الجزء العلوي من البطن",
+  "Continuous nausea or vomiting": "غثيان أو قيء مستمر",
+  "Risk Factors": "عوامل الخطر",
+  "Some of the risk factors for preeclampsia include:": "بعض عوامل الخطر لتسمم الحمل تشمل:",
+  "First pregnancy": "الحمل الأول",
+  "Family history of preeclampsia": "تاريخ عائلي لتسمم الحمل",
+  "Carrying twins or more": "حمل توأم أو أكثر",
+  "Obesity": "السمنة",
+  "Chronic high blood pressure": "ارتفاع ضغط الدم المزمن",
+  "Back to Home Page": "العودة إلى الصفحة الرئيسية",
+  "Prediction Result": "نتيجة التنبؤ",
+  "No prediction result available. Please go back and run the prediction first.": "لا تتوفر نتيجة التنبؤ. يرجى العودة وتشغيل التنبؤ أولاً.",
+  "🔙 Back to Prediction": "🔙 العودة إلى التنبؤ",
+  "No preeclampsia detected": "لم يتم الكشف عن تسمم الحمل",
+  "No immediate medical concerns. Continue monitoring health regularly.": "لا توجد مخاوف طبية فورية. الاستمرار في مراقبة الصحة بانتظام.",
+  "We recommend immediate medical attention.": "نوصي بالاهتمام الطبي الفوري.",
+  "This condition requires close medical supervision. Please consult your physician as soon as possible.": "تتطلب هذه الحالة إشرافًا طبيًا دقيقًا. يرجى استشارة طبيبك في أقرب وقت ممكن.",
+  "Derived Clinical Features": "الميزات السريرية المشتقة"
+}
