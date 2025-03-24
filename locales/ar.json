@@ -8,20 +8,19 @@
   "Select language": "اختر اللغة",
   "English": "الإنجليزية",
   "Arabic": "العربية",
-  "Welcome to Mama's Hope": "مرحبًا بكم في أمل ماما",
+  "Welcome to Mama’s Hope": "مرحبًا بكم في أمل ماما",
   "In the world of medicine, where knowledge and professional expertise meet humanity, hope is born as the driving force that guides us toward a safer future for mothers and their babies.": "في عالم الطب، حيث تلتقي المعرفة والخبرة المهنية بالإنسانية، يولد الأمل كقوة دافعة توجهنا نحو مستقبل أكثر أمانًا للأمهات وأطفالهن.",
   "At <b>Mama’s Hope</b>, we believe that every mother deserves the opportunity to live a healthy and secure life for herself and her child.": "نحن في <b>أمل ماما</b> نؤمن بأن كل أم تستحق فرصة العيش بصحة وأمان لها ولطفلها.",
-  "<b>Preeclampsia</b> is a serious medical condition that can significantly impact maternal and fetal health. However, early detection is key to improving outcomes.": "<b>تسمم الحمل (مقدمات الارتعاج)</b> هو حالة طبية خطيرة يمكن أن تؤثر بشكل كبير على صحة الأم والجنين. ولكن، الكشف المبكر هو المفتاح لتحسين النتائج.",
+  "<b>Preeclampsia</b> is a serious medical condition that can significantly impact maternal and fetal health. However, early detection is key to improving outcomes.": "<b>تسمم الحمل</b> هو حالة طبية خطيرة يمكن أن تؤثر بشكل كبير على صحة الأم والجنين. ولكن، الكشف المبكر هو المفتاح لتحسين النتائج.",
   "Our website provides <b>healthcare professionals</b> with advanced tools and evidence-based insights to predict preeclampsia, empowering them to make timely and informed decisions.": "يوفر موقعنا الإلكتروني <b>للمتخصصين في الرعاية الصحية</b> أدوات متقدمة ورؤى قائمة على الأدلة للتنبؤ بتسمم الحمل، مما يمكنهم من اتخاذ قرارات مستنيرة في الوقت المناسب.",
   "We invite you to explore our website and be part of this meaningful journey. Every piece of information, every tool, and every step we take together brings us closer to a brighter and healthier future.": "ندعوك لاستكشاف موقعنا والمشاركة في هذه الرحلة الهادفة. كل معلومة، وكل أداة، وكل خطوة نتخذها معًا تقربنا من مستقبل أكثر إشراقًا وصحة.",
   "<b>Thank you for being part of Mama’s Hope.</b>": "<b>شكرًا لكونك جزءًا من أمل ماما.</b>",
-  "Search for Patient": "البحث عن مريض",
   "Enter Patient ID": "أدخل رقم تعريف المريض",
   "Search": "بحث",
   "No patient found with this ID.": "لم يتم العثور على مريض بهذا الرقم.",
   "Failed to load patient data.": "فشل تحميل بيانات المريض.",
   "Back to Home": "العودة إلى الصفحة الرئيسية",
-  "preeclampsia prediction": "التنبؤ بتسمم الحمل (مقدمات الارتعاج)",
+  "preeclampsia prediction": "التنبؤ بتسمم الحمل",
   "early_prediction": "التنبؤ المبكر",
   "Patient ID": "رقم تعريف المريض",
   "Patient Name": "اسم المريض",
@@ -50,8 +49,8 @@
   "PLT/MAP Ratio": "نسبة الصفائح الدموية/متوسط الضغط الشرياني (PLT/MAP Ratio):",
   "eGFR": "eGFR (معدل الترشيح الكبيبي المقدر):",
   "Prediction Result:": "نتيجة التنبؤ:",
-  "Preeclampsia detected": "تم الكشف عن تسمم الحمل (مقدمات الارتعاج)",
-  "No preeclampsia detected": "لم يتم الكشف عن تسمم الحمل (مقدمات الارتعاج)",
+  "Preeclampsia detected": "تم الكشف عن تسمم الحمل",
+  "No preeclampsia detected": "لم يتم الكشف عن تسمم الحمل",
   "Recommendation:": "التوصية:",
   "We recommend immediate medical attention.": "نوصي بالاهتمام الطبي الفوري.",
   "No immediate medical concerns. Continue monitoring health regularly.": "لا توجد مخاوف طبية فورية. الاستمرار في مراقبة الصحة بانتظام.",
@@ -77,9 +76,115 @@
   "Prediction Result": "نتيجة التنبؤ",
   "No prediction result available. Please go back and run the prediction first.": "لا تتوفر نتيجة التنبؤ. يرجى العودة وتشغيل التنبؤ أولاً.",
   "🔙 Back to Prediction": "🔙 العودة إلى التنبؤ",
-  "No preeclampsia detected": "لم يتم الكشف عن تسمم الحمل",
-  "No immediate medical concerns. Continue monitoring health regularly.": "لا توجد مخاوف طبية فورية. الاستمرار في مراقبة الصحة بانتظام.",
-  "We recommend immediate medical attention.": "نوصي بالاهتمام الطبي الفوري.",
   "This condition requires close medical supervision. Please consult your physician as soon as possible.": "تتطلب هذه الحالة إشرافًا طبيًا دقيقًا. يرجى استشارة طبيبك في أقرب وقت ممكن.",
-  "Derived Clinical Features": "الميزات السريرية المشتقة"
+  "Derived Clinical Features": "الميزات السريرية المشتقة",
+    "1. Mild Preeclampsia": "1. تسمم الحمل الخفيف",
+    "Please enter the Patient Name in English only!": "يرجى إدخال اسم المريض باللغة الإنجليزية فقط!",
+    "Patient found successfully!": "تم العثور على المريض بنجاح!",
+    "3. Early-Onset Preeclampsia (< 34 weeks)": "3. تسمم الحمل المبكر (أقل من 34 أسبوعًا)",
+    "Diagnosis": "التشخيص",
+    "Patient ID must be exactly 6 digits (numbers only).": "يجب أن يتكون معرف المريض من 6 أرقام فقط.",
+    "Patient Details": "تفاصيل المريض",
+    "When to Intervene Medically": "متى يجب التدخل الطبي",
+    "Your knowledge, our tools – one shared hope.": "معرفتكم وأدواتنا – أمل مشترك واحد.",
+    "Symptoms can range from mild to severe, and may include:": "يمكن أن تتراوح الأعراض بين خفيفة وشديدة، وقد تشمل:",
+    "Classification of Preeclampsia": "تصنيف تسمم الحمل",
+    "While preeclampsia cannot always be prevented, risk can be reduced through:": "على الرغم من أنه لا يمكن دائمًا الوقاية من تسمم الحمل، إلا أنه يمكن تقليل الخطر من خلال:",
+    "Back to Prediction": "العودة إلى صفحة التنبؤ",
+    "If not managed, preeclampsia can lead to:": "إذا لم يتم التعامل معه، قد يؤدي تسمم الحمل إلى:",
+    "4. Late-Onset Preeclampsia (≥ 34 weeks)": "4. تسمم الحمل المتأخر (34 أسبوعًا أو أكثر)",
+    "Prevention and Monitoring": "الوقاية والمتابعة",
+    "Immediate medical intervention is recommended if any of the following criteria are present:": "يوصى بالتدخل الطبي الفوري إذا توفرت أي من المعايير التالية:",
+    "Please enter a valid Patient ID (6 digits only) and make sure the name is in English.": "يرجى إدخال معرف مريض صالح (6 أرقام فقط) والتأكد من أن الاسم باللغة الإنجليزية.",
+    "2. Severe Preeclampsia": "2. تسمم الحمل الشديد",
+    "Patient ID must be exactly 6 digits.": "يجب أن يتكون معرف المريض من 6 أرقام تمامًا.",
+    "At Mama’s Hope, we empower healthcare professionals to predict preeclampsia early.": "في أمل ماما ، نمكّن المتخصصين في الرعاية الصحية من التنبؤ بتسمم الحمل مبكرًا.",
+    "References and Resources": "المراجع والمصادر",
+    "Potential Complications": "المضاعفات المحتملة",
+    "Please enter a Patient ID to search.": "يرجى إدخال معرف المريض للبحث.",
+    "About Preeclampsia": "حول تسمم الحمل",
+    "Together, we can build a safer, healthier future for mothers and babies.": "معًا، يمكننا بناء مستقبل أكثر أمانًا وصحة للأمهات والأطفال.",
+    "Diagnostic workup includes:": "تشمل الفحوصات التشخيصية:",
+    "Signs and Symptoms of Preeclampsia": "علامات وأعراض تسمم الحمل",
+    "Recommended clinical management after diagnosing preeclampsia": "الإدارة السريرية الموصى بها بعد تشخيص تسمم الحمل",
+    "Immediate clinical evaluation to determine whether hospitalization is needed.": "تقييم سريري فوري لتحديد ما إذا كانت هناك حاجة لدخول المستشفى.",
+    "Request additional tests, including:": "طلب فحوصات إضافية، تشمل:",
+    "Liver and kidney function tests": "اختبارات وظائف الكبد والكلى",
+    "Complete blood count (CBC)": "تعداد الدم الكامل (CBC)",
+    "Assess fetal growth and well-being using ultrasound and Doppler studies.": "تقييم نمو الجنين وسلامته باستخدام الموجات فوق الصوتية ودراسات دوبلر.",
+    "Determine appropriate timing of delivery based on case severity and gestational age.": "تحديد التوقيت المناسب للولادة بناءً على شدة الحالة وعمر الحمل.",
+    "Refer to a specialized care center if necessary.": "إحالة إلى مركز رعاية متخصص إذا لزم الأمر.",
+    "Recommended clinical actions when preeclampsia is not diagnosed": "الإجراءات السريرية الموصى بها عند عدم تشخيص تسمم الحمل",
+    "Continue routine antenatal care.": "مواصلة الرعاية السابقة للولادة بشكل روتيني.",
+    "Monitor blood pressure and perform regular urine protein analysis.": "مراقبة ضغط الدم وإجراء تحليل بروتين البول بانتظام.",
+    "Educate the patient about warning signs such as:": "تثقيف المريضة حول العلامات التحذيرية مثل:",
+    "Persistent headache": "الصداع المستمر",
+    "Vision changes": "تغيرات في الرؤية",
+    "Upper abdominal pain": "ألم في الجزء العلوي من البطن",
+    "Unusual swelling": "تورم غير معتاد",
+    "Re-evaluation is recommended if new symptoms arise or if vital signs or lab results change.": "يوصى بإعادة التقييم إذا ظهرت أعراض جديدة أو تغيرت العلامات الحيوية أو نتائج المختبر.",
+      "What is Preeclampsia?": "ما هو تسمم الحمل؟",
+      "Preeclampsia is a serious medical condition that can occur after the 20th week of pregnancy. It is characterized by elevated blood pressure and the presence of protein in the urine or signs of organ dysfunction, particularly in the liver or kidneys. If left untreated, it may lead to life-threatening complications for both mother and baby.": "تسمم الحمل هو حالة طبية خطيرة يمكن أن تحدث بعد الأسبوع العشرين من الحمل. يتميز بارتفاع ضغط الدم ووجود البروتين في البول أو علامات خلل في وظائف الأعضاء، خاصة في الكبد أو الكلى. إذا ترك دون علاج، فقد يؤدي إلى مضاعفات تهدد حياة الأم والجنين.",
+      "Signs and Symptoms of Preeclampsia": "علامات وأعراض تسمم الحمل",
+      "Symptoms can range from mild to severe, and may include:": "يمكن أن تتراوح الأعراض بين خفيفة وشديدة، وقد تشمل:",
+      "Elevated blood pressure (≥ 140/90 mmHg)": "ارتفاع ضغط الدم (≥ 140/90 ملم زئبقي)",
+      "Unusual swelling of the face, hands, or feet": "تورم غير عادي في الوجه أو اليدين أو القدمين",
+      "Severe headache unresponsive to medication": "صداع شديد لا يستجيب للأدوية",
+      "Visual disturbances (blurred vision, flashing lights)": "اضطرابات بصرية (تشوش الرؤية، ومضات ضوئية)",
+      "Pain in the upper right abdomen": "ألم في الجزء العلوي الأيمن من البطن",
+      "Shortness of breath or chest tightness": "ضيق في التنفس أو ضيق في الصدر",
+      "Decreased urine output or dark-colored urine": "انخفاض كمية البول أو بول داكن اللون",
+      "When to Intervene Medically": "متى يجب التدخل الطبي",
+      "Immediate medical intervention is recommended if any of the following criteria are present:": "يوصى بالتدخل الطبي الفوري في حالة وجود أي من المعايير التالية:",
+      "Blood pressure ≥ 140/90 mmHg on two readings at least 4 hours apart": "ضغط الدم ≥ 140/90 ملم زئبقي في قراءتين تفصل بينهما 4 ساعات على الأقل",
+      "Proteinuria ≥ 300 mg/24h or Protein/Creatinine ratio ≥ 0.3": "بيلة بروتينية ≥ 300 ملغ/24 ساعة أو نسبة البروتين/الكرياتينين ≥ 0.3",
+      "Persistent, severe headache": "صداع مستمر وشديد",
+      "Neurological or visual disturbances": "اضطرابات عصبية أو بصرية",
+      "Platelet count < 100,000/μL": "عدد الصفائح الدموية < 100,000/ميكرولتر",
+      "Elevated creatinine ≥ 1.1 mg/dL or doubling of baseline": "ارتفاع الكرياتينين ≥ 1.1 ملغ/ديسيلتر أو مضاعفة المستوى الأساسي",
+      "Elevated liver enzymes (ALT/AST)": "ارتفاع إنزيمات الكبد (ALT/AST)",
+      "Pulmonary edema or unexplained dyspnea": "وذمة رئوية أو ضيق تنفس غير مبرر",
+      "Signs of fetal compromise (growth restriction, oligohydramnios)": "علامات تدهور حالة الجنين (تقييد النمو، قلة السائل الأمنيوسي)",
+      "Classification of Preeclampsia": "تصنيف تسمم الحمل",
+      "1. Mild Preeclampsia": "1. تسمم الحمل الخفيف",
+      "Elevated blood pressure without severe symptoms": "ارتفاع ضغط الدم بدون أعراض شديدة",
+      "Normal liver and kidney function": "وظائف الكبد والكلى طبيعية",
+      "No neurological signs": "لا توجد علامات عصبية",
+      "2. Severe Preeclampsia": "2. تسمم الحمل الشديد",
+      "BP ≥ 160/110 mmHg": "ضغط الدم ≥ 160/110 ملم زئبقي",
+      "Visual or neurological disturbances": "اضطرابات بصرية أو عصبية",
+      "Organ dysfunction (liver, kidney, or platelet issues)": "خلل في وظائف الأعضاء (الكبد أو الكلى أو مشاكل الصفائح الدموية)",
+      "Clinical deterioration requiring hospitalization or early delivery": "تدهور سريري يستدعي دخول المستشفى أو الولادة المبكرة",
+      "3. Early-Onset Preeclampsia (< 34 weeks)": "3. تسمم الحمل المبكر (< 34 أسبوعًا)",
+      "Associated with higher risk; requires close monitoring and delivery planning.": "مرتبط بخطر أعلى؛ يتطلب مراقبة دقيقة وتخطيط للولادة.",
+      "4. Late-Onset Preeclampsia (≥ 34 weeks)": "4. تسمم الحمل المتأخر (≥ 34 أسبوعًا)",
+      "Often less severe but still warrants close surveillance.": "غالبًا ما يكون أقل حدة ولكنه لا يزال يستدعي مراقبة دقيقة.",
+      "Diagnosis": "التشخيص",
+      "Diagnostic workup includes:": "يشمل التشخيص:",
+      "Serial blood pressure measurements": "قياسات ضغط الدم المتسلسلة",
+      "Urinalysis for protein": "تحليل البول للبروتين",
+      "Kidney function tests (Creatinine, BUN)": "اختبارات وظائف الكلى (الكرياتينين، BUN)",
+      "Liver function tests (ALT, AST)": "اختبارات وظائف الكبد (ALT, AST)",
+      "Complete blood count (CBC)": "تعداد الدم الكامل (CBC)",
+      "Fetal assessments (Ultrasound, Doppler flow studies)": "تقييمات الجنين (الموجات فوق الصوتية، دراسات تدفق دوبلر)",
+      "Additional markers: eGFR, BUN/Creatinine ratio, PLT/MAP ratio": "علامات إضافية: eGFR، نسبة BUN/الكرياتينين، نسبة PLT/MAP",
+      "Potential Complications": "المضاعفات المحتملة",
+      "If not managed, preeclampsia can lead to:": "إذا لم يتم التعامل معه، يمكن أن يؤدي تسمم الحمل إلى:",
+      "Placental abruption": "انفصال المشيمة",
+      "Intrauterine growth restriction (IUGR)": "تقييد النمو داخل الرحم (IUGR)",
+      "Preterm birth": "الولادة المبكرة",
+      "HELLP syndrome": "متلازمة HELLP",
+      "Eclampsia (seizures)": "تسمم الحمل (نوبات صرع)",
+      "Renal or hepatic failure": "فشل كلوي أو كبدي",
+      "Maternal and/or fetal death in severe cases": "وفاة الأم و/أو الجنين في الحالات الشديدة",
+      "Prevention and Monitoring": "الوقاية والمراقبة",
+      "While preeclampsia cannot always be prevented, risk can be reduced through:": "على الرغم من أنه لا يمكن دائمًا منع تسمم الحمل، إلا أنه يمكن تقليل المخاطر من خلال:",
+      "Regular antenatal blood pressure monitoring": "مراقبة ضغط الدم المنتظمة قبل الولادة",
+      "Low-dose aspirin (81 mg daily starting at 12 weeks) in high-risk patients": "جرعة منخفضة من الأسبرين (81 ملغ يوميًا بدءًا من 12 أسبوعًا) للمرضى المعرضين لخطر كبير",
+      "Managing chronic conditions like hypertension or diabetes": "التعامل مع الحالات المزمنة مثل ارتفاع ضغط الدم أو مرض السكري",
+      "Health education and balanced nutrition": "التثقيف الصحي والتغذية المتوازنة",
+      "Light physical activity (if no contraindications)": "نشاط بدني خفيف (إذا لم تكن هناك موانع)",
+      "Monitoring weight gain and fluid retention": "مراقبة زيادة الوزن واحتباس السوائل",
+      "References and Resources": "مراجع ومصادر",
+      "Back to Home Page": "العودة إلى الصفحة الرئيسية"
 }
