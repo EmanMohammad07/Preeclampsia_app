@@ -18,32 +18,32 @@ def save_to_database(data):
     conn = sqlite3.connect("patient_data.db")
     cursor = conn.cursor()
     cursor.execute('''
-        CREATE TABLE IF NOT EXISTS patients (
-            patient_id TEXT,
-            name TEXT,
-            age INTEGER,
-            weight REAL,
-            height REAL,
-            weeks_pregnant INTEGER,
-            sbp REAL,
-            dbp REAL,
-            cr_se REAL,
-            plt REAL,
-            bun REAL,
-            protein REAL,
-            chol REAL,
-            glu REAL,
-            uric REAL,
-            alk REAL,
-            alt REAL,
-            egfr REAL,
-            bmi REAL,
-            map_val REAL,
-            plt_map_ratio REAL,
-            height_m REAL,
-            bun_cr_ratio REAL,
-            result TEXT
-        )
+         CREATE TABLE IF NOT EXISTS patients (
+        patient_id TEXT,
+        name TEXT,
+        age INTEGER,
+        weight REAL,
+        height REAL,
+        weeks_pregnant INTEGER,
+        sbp REAL,
+        dbp REAL,
+        cr_se REAL,
+        plt REAL,
+        bun REAL,
+        protein REAL,
+        chol REAL,
+        glu REAL,
+        uric REAL,
+        alk REAL,
+        alt REAL,
+        egfr REAL,
+        bmi REAL,
+        map_val REAL,
+        plt_map_ratio REAL,
+        height_m REAL,
+        bun_cr_ratio REAL,
+        result INTEGER  -- ✅ عدلناه من TEXT إلى INTEGER
+    )
     ''')
     cursor.execute('''INSERT INTO patients VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)''', data)
     conn.commit()
@@ -53,6 +53,7 @@ def save_to_database(data):
 def predict_page():
     st.title(_("preeclampsia prediction"))
     st.write(_("early_prediction"))
+
 
     # تحميل النماذج والمقياس
     scaler, saved_columns = load_scaler_and_columns()
@@ -133,20 +134,17 @@ def predict_page():
         ensemble_probs = (nn_probs + xgb_probs + lr_probs) / 3.0
         ensemble_pred = (ensemble_probs > 0.5).astype(int)
 
-        result = _("Preeclampsia detected") if ensemble_pred[0] == 1 else _("No preeclampsia detected")
+        result_en = "Preeclampsia detected" if ensemble_pred[0] == 1 else "No preeclampsia detected"
 
         # حفظ البيانات
-        save_patient_data(patient_id, name, age, weight, height, weeks_pregnant,
-                          sbp, dbp, cr_se, plt, bun, protein, chol, glu, uric, alk, alt,
-                          eGFR, bmi, map_val, plt_map_ratio, height_m, bun_cr_ratio, result)
-
+        # ✅ هنا تخزن النتيجة كـ 0 أو 1
         save_to_database((patient_id, name, age, weight, height, weeks_pregnant,
-                          sbp, dbp, cr_se, plt, bun, protein, chol, glu, uric, alk, alt,
-                          eGFR, bmi, map_val, plt_map_ratio, height_m, bun_cr_ratio, result))
+                  sbp, dbp, cr_se, plt, bun, protein, chol, glu, uric, alk, alt,
+                  eGFR, bmi, map_val, plt_map_ratio, height_m, bun_cr_ratio, int(ensemble_pred[0])))
+
 
         # عرض النتيجة في صفحة منفصلة
-        st.session_state.page = "result"
-        st.session_state.result = result
+        st.session_state.result = int(ensemble_pred[0])
         st.session_state.derived_table = pd.DataFrame([{
             "Height (m)": height_m,
             "BMI": bmi,
@@ -164,6 +162,7 @@ def predict_page():
             "Weeks Pregnant": weeks_pregnant
         }
 
+        st.session_state.page = "result"
         st.rerun()
 
     if st.button(_("Back to Home")):

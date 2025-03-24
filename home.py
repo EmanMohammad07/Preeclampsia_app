@@ -1,7 +1,7 @@
 import streamlit as st
 import os
-from utils import _
 import base64
+from utils import _
 
 def home_page():
     # تحديد المسار للصورة
@@ -10,56 +10,61 @@ def home_page():
 
     # تنسيق CSS احترافي للألوان وتنسيق الصفحة
     st.markdown("""
-        <style>
-        .main-container {
-            text-align: center;
-            margin-top: 30px;
-        }
-        .main-title {
-            font-size: 42px;
-            font-weight: bold;
-            background: -webkit-linear-gradient(90deg, #003366, #29648A);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 20px;
-        }
-        .subtitle {
-            font-size: 22px;
-            color: #2A4D69;
-            margin-bottom: 15px;
-        }
-        .highlight {
-            font-size: 20px;
-            color: #3B6E8F;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-        .emphasis {
-            font-size: 18px;
-            color: #5D697A;
-            font-style: italic;
-            margin-bottom: 30px;
-        }
-        .button-column {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            margin-top: 40px;
-        }
-        .stButton>button {
-            font-size: 16px;
-            padding: 10px 30px;
-            border-radius: 8px;
-            background-color: #e1eaf4;
-            color: #003366;
-            border: 1px solid #b0c4de;
-        }
-        .stButton>button:hover {
-            background-color: #d0e1f9;
-            color: #001f33;
-        }
-        </style>
+    <style>
+    .main-container {
+        text-align: center;
+        margin-top: 30px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .main-title {
+        font-size: 42px;
+        font-weight: bold;
+        background: -webkit-linear-gradient(90deg, #003366, #29648A);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 20px;
+    }
+    .subtitle, .highlight, .emphasis {
+        font-size: 22px;
+        color: #2A4D69;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+    .highlight {
+        font-size: 20px;
+        color: #3B6E8F;
+        font-weight: 600;
+    }
+    .emphasis {
+        font-size: 18px;
+        color: #5D697A;
+        font-style: italic;
+        margin-bottom: 30px;
+    }
+    .button-container {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 40px;
+    }
+    .stButton>button {
+        font-size: 10px;
+        padding: 10px 30px;
+        border-radius: 8px;
+        background-color: #e1eaf4;
+        color: #003366;
+        border: 1px solid #b0c4de;
+        width: 220px;
+        height: 48px;
+    }
+    .stButton>button:hover {
+        background-color: #d0e1f9;
+        color: #001f33;
+    }
+    </style>
     """, unsafe_allow_html=True)
 
     # عرض الشعار في المنتصف
@@ -75,20 +80,25 @@ def home_page():
         </div>
     """, unsafe_allow_html=True)
 
-    # أزرار تحت بعض
-    st.markdown("<div class='button-column'>", unsafe_allow_html=True)
+    # أزرار جنبًا إلى جنب
+    st.markdown("<div class='button-container'>", unsafe_allow_html=True)
 
-    if st.button(_("Start Prediction"), key="btn_predict"):
-        st.session_state.page = "predict"
-        st.rerun()
+    col1, col2, col3 = st.columns(3)
 
-    if st.button("" + _("View Patient Records"), key="btn_view_records"):
-        st.session_state.page = "search_patient"
-        st.rerun()
+    with col1:
+        if st.button(_("Start Prediction"), key="btn_predict"):
+            st.session_state.page = "predict"
+            st.rerun()
 
-    if st.button("" + _("Learn About Preeclampsia"), key="btn_learn"):
-        st.session_state.page = "preeclampsia_info"
-        st.rerun()
+    with col2:
+        if st.button("" + _("Search for Patient"), key="btn_view_records"):
+            st.session_state.page = "search_patient"
+            st.rerun()
+
+    with col3:
+        if st.button("" + _("About Preeclampsia"), key="btn_learn"):
+            st.session_state.page = "preeclampsia_info"
+            st.rerun()
 
     st.markdown("</div>", unsafe_allow_html=True)
 

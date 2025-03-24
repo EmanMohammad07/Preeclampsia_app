@@ -24,24 +24,41 @@ text_align = "right" if st.session_state.language == "ar" else "left"
 text_color = "#003366"
 
 # تنسيق الواجهة
-st.markdown("""
+st.markdown(f"""
     <style>
         .stApp {{
             background-color: #EAF2FF;
-            direction: {direction};
+            direction: {text_direction};
         }}
         h1, h2, h3, h4, h5, h6, p, label, .stTextInput, .stButton, .stRadio {{
-            text-align: {align} !important;
-            direction: {direction} !important;
-            color: {color} !important;
+            text-align: {text_align} !important;
+            direction: {text_direction} !important;
+            color: {text_color} !important;
         }}
         .stSidebar {{
-            direction: {direction};
-            text-align: {align};
-            color: {color} !important;
+            direction: {text_direction};
+            text-align: {text_align};
+            color: {text_color} !important;
+        }}
+        .stSidebar .stButton>button {{
+            width: 220px;
+            height: 48px;
+            font-size: 16px;
+            background-color: #e1eaf4;
+            border: 1px solid #b0c4de;
+            color: #003366;
+            border-radius: 8px;
+        }}
+        .stSidebar .stButton>button:hover {{
+            background-color: #d0e1f9;
+            color: #001f33;
+        }}
+        .stSidebar .stButton>button:focus:not(:active) {{
+            border: 2px solid #4a90e2;
+            background-color: #ffffff;
         }}
     </style>
-""".format(direction=text_direction, align=text_align, color=text_color), unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
 # الشريط الجانبي
 st.sidebar.title(_("About our site"))
@@ -51,21 +68,25 @@ if st.sidebar.button(_("Home page")):
     st.session_state.page = "home"
     st.rerun()
 
-if st.sidebar.button(_("Search for Patient")):
-    st.session_state.page = "search_patient"
-    st.rerun()
-
 if st.sidebar.button(_("Start Prediction")):
     st.session_state.page = "predict"
     st.rerun()
 
-if st.sidebar.button(_("Preeclampsia Information")):
+if st.sidebar.button(_("Search for Patient")):
+    st.session_state.page = "search_patient"
+    st.rerun()
+
+
+if st.sidebar.button(_("About Preeclampsia")):
     st.session_state.page = "preeclampsia_info"
     st.rerun()
 
 # اختيار اللغة
-st.sidebar.markdown(f"{_('Change language')}")
-language_choice = st.sidebar.radio(_("Select language"), ["English", "Arabic"], index=0 if st.session_state.language == "en" else 1)
+language_choice = st.sidebar.radio(
+    label=_("Change language"),
+    options=["English", "Arabic"],
+    index=0 if st.session_state.language == "en" else 1
+)
 
 if language_choice == "English" and st.session_state.language != "en":
     st.session_state.language = "en"
