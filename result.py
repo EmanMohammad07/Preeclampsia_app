@@ -18,10 +18,10 @@ def result_page():
 
     # Display prediction result
     if result == 0:
-        st.success(_("No preeclampsia detected"))  # ترجمة نتيجة التنبؤ
+        st.success(_("No preeclampsia detected"))  
         st.info(_("No immediate medical concerns. Continue monitoring health regularly."))
     else:
-        st.error(_("Preeclampsia detected"))  # ترجمة نتيجة التنبؤ
+        st.error(_("Preeclampsia detected"))  
         st.warning(_("We recommend immediate medical attention."))
 
     # --- Medical Recommendations Section ---
