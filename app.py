@@ -7,23 +7,23 @@ from predict import predict_page
 from result import result_page
 from preeclampsia_info import preeclampsia_info_page
 
-# الحالة المبدئية
+# Initial state
 if "language" not in st.session_state:
     st.session_state.language = "en"
 if "page" not in st.session_state:
     st.session_state.page = "home"
 
-# تحميل الترجمة حسب اللغة المختارة
+# Load translation based on selected language
 if "translations" not in st.session_state or st.session_state.language != st.session_state.get("last_language", ""):
     st.session_state.translations = load_translation(st.session_state.language)
     st.session_state.last_language = st.session_state.language
 
-# اتجاه النص واللون
+# Text direction and color
 text_direction = "rtl" if st.session_state.language == "ar" else "ltr"
 text_align = "right" if st.session_state.language == "ar" else "left"
 text_color = "#003366"
 
-# تنسيق الواجهة
+# Interface styling
 st.markdown(f"""
     <style>
         .stApp {{
@@ -60,7 +60,7 @@ st.markdown(f"""
     </style>
 """, unsafe_allow_html=True)
 
-# الشريط الجانبي
+# Sidebar content
 st.sidebar.title(_("About our site"))
 st.sidebar.write(_("We are Mama’s Hope, and we aspire to be a source of hope for every mother dreaming of a safe and stable pregnancy."))
 
@@ -76,12 +76,11 @@ if st.sidebar.button(_("Search for Patient")):
     st.session_state.page = "search_patient"
     st.rerun()
 
-
 if st.sidebar.button(_("About Preeclampsia")):
     st.session_state.page = "preeclampsia_info"
     st.rerun()
 
-# اختيار اللغة
+# Language selection
 language_choice = st.sidebar.radio(
     label=_("Change language"),
     options=["English", "Arabic"],
@@ -100,7 +99,7 @@ elif language_choice == "Arabic" and st.session_state.language != "ar":
     st.session_state.last_language = "ar"
     st.rerun()
 
-# التنقل بين الصفحات
+# Page navigation
 if st.session_state.page == "home":
     home_page()
 elif st.session_state.page == "search_patient":
