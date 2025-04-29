@@ -65,8 +65,7 @@ def predict_page():
 
         col1, col2 = st.columns([1, 3])
         with col1:
-         title_options = [_("Mr."), _("Mrs."), _("Ms.")]
-         title = st.selectbox(_("Title"), options=title_options)
+         title = st.selectbox(_("Title"), options=["Mr.", "Mrs.", "Ms."])
         with col2:
          name = st.text_input(_("Patient Name"), key="patient_name")
          st.caption(_("Please enter the Patient Name in English only!"))
