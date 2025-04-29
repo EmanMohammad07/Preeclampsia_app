@@ -8,7 +8,7 @@ def home_page():
     base_path = os.path.dirname(os.path.abspath(__file__))
     logo_path = os.path.join(base_path, "assets", "homepage.png")
 
-    # تنسيق CSS احترافي للألوان وتنسيق الصفحة
+    # تنسيق CSS  للألوان وتنسيق الصفحة
     st.markdown("""
     <style>
     .main-container {
