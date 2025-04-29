@@ -186,5 +186,11 @@
     "Light physical activity (if no contraindications)": "Light physical activity (if no contraindications)",
     "Monitoring weight gain and fluid retention": "Monitoring weight gain and fluid retention",
     "References and Resources": "References and Resources",
-    "Back to Home Page": "Back to Home Page"
-}
+    "Back to Home Page": "Back to Home Page",
+    "Please enter a 6-digit Patient ID using numbers only (e.g., 123456)": "Please enter a 6-digit Patient ID using numbers only (e.g., 123456)",
+    "Please enter the Patient Name in English only!": "Please enter the patient's name in English only.",
+    "Title": "Title",
+    "Mr.": "Mr.",
+    "Mrs.": "Mrs.",
+    "Ms.": "Ms."
+  }
