@@ -58,10 +58,18 @@ def predict_page():
     # تحميل النماذج والمقياس
     scaler, saved_columns = load_scaler_and_columns()
     nn_model, xgb_model, lr_model = load_models()
-
+    
     with st.form("prediction_form"):
         patient_id = st.text_input(_("Patient ID"), key="patient_id")
-        name = st.text_input(_("Patient Name"), key="patient_name")
+        st.caption(_("Please enter a 6-digit Patient ID using numbers only (e.g., 123456)"))
+
+        col1, col2 = st.columns([1, 3])
+        with col1:
+         title_options = [_("Mr."), _("Mrs."), _("Ms.")]
+         title = st.selectbox(_("Title"), options=title_options)
+        with col2:
+         name = st.text_input(_("Patient Name"), key="patient_name")
+         st.caption(_("Please enter the Patient Name in English only!"))
 
         if patient_id and not is_valid_patient_id(patient_id):
             st.warning(_("Patient ID must be exactly 6 digits (numbers only)."))
@@ -138,7 +146,8 @@ def predict_page():
 
         # حفظ البيانات
         # ✅ هنا تخزن النتيجة كـ 0 أو 1
-        save_to_database((patient_id, name, age, weight, height, weeks_pregnant,
+        full_name = f"{title} {name}"
+        save_to_database((patient_id, full_name, age, weight, height, weeks_pregnant,
                   sbp, dbp, cr_se, plt, bun, protein, chol, glu, uric, alk, alt,
                   eGFR, bmi, map_val, plt_map_ratio, height_m, bun_cr_ratio, int(ensemble_pred[0])))
 
@@ -155,7 +164,7 @@ def predict_page():
         }])
         st.session_state.patient_info = {
             "Patient ID": patient_id,
-            "Name": name,
+            "Name": full_name,
             "Age": age,
             "Weight": weight,
             "Height": height,
