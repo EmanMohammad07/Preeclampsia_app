@@ -186,5 +186,11 @@
       "Light physical activity (if no contraindications)": "نشاط بدني خفيف (إذا لم تكن هناك موانع)",
       "Monitoring weight gain and fluid retention": "مراقبة زيادة الوزن واحتباس السوائل",
       "References and Resources": "مراجع ومصادر",
-      "Back to Home Page": "العودة إلى الصفحة الرئيسية"
+      "Back to Home Page": "العودة إلى الصفحة الرئيسية",
+      "Please enter a 6-digit Patient ID using numbers only (e.g., 123456)": "يرجى إدخال رقم مريض مكون من 6 أرقام فقط (مثل: 123456)",
+      "Please enter the Patient Name in English only!": "يرجى إدخال اسم المريض باللغة الإنجليزية فقط.",
+      "Title": "اللقب",
+      "Mr.": "السيد",
+      "Mrs.": "السيدة",
+      "Ms.": "الآنسة"    
 }
